@@ -18,6 +18,7 @@ BUT with:
 - No sound for now
 - Probably poor performance (rely exclusively on CPU for now)
 - Some glitch/artifacts
+- Auto-start your rom.gba (see below)
 
 ## Docker
 ```yaml
