@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+# permissions
+chown -R abc:abc \
+	/config
+chown abc:abc /roms -R
+chown abc:abc /app/mGBA -R
+chown abc:abc /mgba.sh -R
+chown abc:abc /mgba/ -R
+if [ ! -d '/config/.config/mgba/config.ini' ]; then 
+  mkdir -p /config/.config/mgba
+  cp /mgba/config.ini /config/.config/mgba/config.ini
+fi
+chown abc:abc /config -R
+chmod +x /mgba.sh
