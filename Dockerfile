@@ -18,7 +18,7 @@ RUN \
 
 RUN \
   echo "Download latest mGBA from github repo"
-ADD https://api.github.com/repos/mgba-emu/mgba/releases/latest version.json
+#ADD https://api.github.com/repos/mgba-emu/mgba/releases/latest version.json
 RUN curl -s https://api.github.com/repos/mgba-emu/mgba/releases/latest | grep "browser_download_url.*download.*mGBA.*ubuntu64-focal.tar.xz" | cut -d : -f 2,3 | tr -d '"' | wget -qi - -O mGBA.tar.xz && \
   echo "Install FMD2" && \
   tar -xJvf mGBA.tar.xz -C /app && mv /app/mGBA* /app/mGBA && \
@@ -33,13 +33,18 @@ RUN \
 RUN \
   echo "Remove tools" && \
   rm mGBA.tar.xz && \
-  apt auto-remove -y wget curl p7zip
+  apt auto-remove -y wget p7zip
 
 RUN \
-  rm /usr/share/novnc/vnc_lite.html /usr/share/novnc/vnc.html && \
+  rm /usr/share/novnc/vnc.html && \
+  mv /usr/share/novnc/vnc_lite.html /usr/share/novnc/index.html && \
+  curl https://raw.githubusercontent.com/novnc/noVNC/master/vnc_lite.html > /usr/share/novnc/index.html && \
+  sed -i '42s/.*/display:none;/' /usr/share/novnc/index.html && \
+  sed -i '50s/.*/display:none;/' /usr/share/novnc/index.html && \
+  sed -i '169s/.*/rfb.scaleViewport = readQueryVariable("scale", true);/' /usr/share/novnc/index.html && \
   mkdir -p /mgba/ 
 
-COPY index.html /usr/share/novnc/index.html
+#COPY index.html /usr/share/novnc/index.html
 COPY mgba.sh /
 COPY root/ /
 COPY config.ini /mgba/
