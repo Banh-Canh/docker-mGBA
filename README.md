@@ -8,6 +8,13 @@ https://hub.docker.com/r/banhcanh/docker-mgba
 
 Use linuxserver's ubuntu focal base image.
 
+Controls:
+- Use arrows to move.
+- To press button A, use W
+- To press button B, use Z
+- To press buttons L and R, use Q and S
+- To press start and select, use return key and backspace
+
 ## Features
 
 Most features from: https://github.com/mgba-emu/mgba
@@ -40,6 +47,10 @@ services:
       - /path/to/roms:/roms
     restart: unless-stopped
 ```
+## Screenshot
+
+![image](https://user-images.githubusercontent.com/66330398/113675850-10837200-96bc-11eb-9841-6b2b4dca0ed2.png)
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
