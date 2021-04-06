@@ -44,7 +44,7 @@ RUN \
   sed -i '169s/.*/rfb.scaleViewport = readQueryVariable("scale", true);/' /usr/share/novnc/index.html && \
   mkdir -p /mgba/ 
 
-#COPY index.html /usr/share/novnc/index.html
+COPY fluxbox/ /config/.fluxbox/
 COPY mgba.sh /
 COPY root/ /
 COPY config.ini /mgba/
