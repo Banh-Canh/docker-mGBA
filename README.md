@@ -37,7 +37,7 @@ services:
       - 6180:6180
     volumes:
       - /path/to/config:/config
-      - /path/to/rom.gba:/roms/rom.gba
+      - /path/to/roms:/roms
     restart: unless-stopped
 ```
 
