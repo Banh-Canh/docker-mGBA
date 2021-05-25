@@ -20,7 +20,7 @@ RUN \
   echo "Download latest mGBA from github repo"
 ADD https://api.github.com/repos/mgba-emu/mgba/releases/latest version.json
 RUN curl -s https://api.github.com/repos/mgba-emu/mgba/releases/latest | grep "browser_download_url.*download.*mGBA.*ubuntu64-focal.tar.xz" | cut -d : -f 2,3 | tr -d '"' | wget -qi - -O mGBA.tar.xz && \
-  echo "Install FMD2" && \
+  echo "Install mGBA" && \
   tar -xJvf mGBA.tar.xz -C /app && mv /app/mGBA* /app/mGBA && \
   mkdir /roms && \
   chown abc:abc -R /roms
